@@ -1,0 +1,8 @@
+[application]
+name = "hevel_rust"
+
+[web.app]
+title = "Hevel – A Dynamic Island for your Mac"
+
+[web.watcher]
+index_on_404 = true

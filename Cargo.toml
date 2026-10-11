@@ -1,0 +1,33 @@
+[package]
+name = "hevel_rust"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dioxus = { version = "0.7.0", features = ["router", "fullstack"] }
+gloo-timers = { version = "0.3", features = ["futures"] }
+gloo-events = "0.2"
+gloo-net = { version = "0.6", default-features = false, features = ["http", "json"] }
+futures = "0.3"
+js-sys = "0.3"
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+web-sys = { version = "0.3", features = [
+    "AudioBuffer", "AudioBufferSourceNode", "AudioContext", "AudioDestinationNode", "AudioNode", "AudioParam",
+    "CanvasRenderingContext2d", "Document", "DomRect", "DomTokenList", "Element", "Event", "EventTarget",
+    "GainNode", "HtmlCanvasElement", "HtmlImageElement", "ImageData", "IntersectionObserver",
+    "IntersectionObserverEntry", "IntersectionObserverInit", "KeyboardEvent", "MediaQueryList", "Window",
+    "VisibilityState", "MouseEvent", "NodeList", "Node",
+] }
+serde = { version = "1", features = ["derive"] }
+reqwest = { version = "0.12", features = ["json"], optional = true }
+
+[features]
+default = ["web"]
+web = ["dioxus/web"]
+server = ["dioxus/server", "dep:reqwest"]
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
